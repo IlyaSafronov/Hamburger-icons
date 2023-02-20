@@ -62,3 +62,20 @@ button {
 .button-one:hover .bottom {
   rotate: -45deg;
 }
+
+/* ! Button two */
+.button-two {
+  --button-color: #232;
+}
+
+.button-two .line {
+  transition: stroke-dashoffset 1s;
+}
+
+.button-two:hover .line {
+  stroke-dashoffset: 79.9;
+}
+
+@keyframes to-close-icon {
+  
+}
