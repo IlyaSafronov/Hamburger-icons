@@ -35,31 +35,31 @@ button {
   /* fill: red; */
   transition: 
     y 300ms ease-in 300ms,
-    rotate 300ms ease-in 300ms,
+    rotate 300ms ease-in,
     opacity 0ms 300ms;
   transform-origin: center;
 }
 
-.button-one:hover .line {
+.button-one[aria-expanded='true'] .line {
   transition: 
-    y 300ms ease-in 300ms,
+    y 300ms ease-in,
     rotate 300ms ease-in 300ms,
     opacity 0ms 300ms;
 }
 
-.button-one:hover :is(.top, .bottom) {
+.button-one[aria-expanded='true'] :is(.top, .bottom) {
   y: 45;
 }
 
-.button-one:hover .top {
+.button-one[aria-expanded='true'] .top {
   rotate: 45deg;
 }
 
-.button-one:hover .middle {
+.button-one[aria-expanded='true'] .middle {
   opacity: 0;
 }
 
-.button-one:hover .bottom {
+.button-one[aria-expanded='true'] .bottom {
   rotate: -45deg;
 }
 
@@ -68,14 +68,22 @@ button {
   --button-color: #232;
 }
 
-.button-two .line {
+.button-two[data-state='closed'] :is(.top, .bottom) {
   /* transition: stroke-dashoffset 1s; */
   animation: to-open-icon 1s forwards;
 }
 
-.button-two:hover .line {
+.button-two[data-state='opened'] :is(.top, .bottom) {
   /* stroke-dashoffset: 79.9; */
   animation: to-close-icon 1s forwards;
+}
+
+.button-two .hamburger {
+  transition: rotate 800ms 100ms;
+}
+
+.button-two[data-state='opened'] .hamburger {
+  rotate: 1turn;
 }
 
 .button-two .line.top {
@@ -91,7 +99,7 @@ button {
 @keyframes to-close-icon {
   0% { stroke-dashoffset: 0;}
   40% { stroke-dashoffset: 79.9;}
-  60% { stroke-dashoffset: 79.9; rotate: var(--rotation) ;}
+  60% { stroke-dashoffset: 79.9; rotate: calc(var(--rotation)) ;}
   100% {stroke-dashoffset: 0; rotate: var(--rotation) ;}
 }
 
@@ -112,7 +120,15 @@ button {
   transition: translate 1s, rotate 1s;
 }
 
-.button-three:hover .hamburger {
+/* todo Анимация CSS */
+/* .button-three:hover .hamburger { */
+  /* outline: 3px solid red; */  
+  /* translate: 10px -10px;
+  rotate: .125turn;
+} */
+
+/* todo Управление анимацией JS */
+.button-three[aria-expanded="true"] .hamburger {
   /* outline: 3px solid red; */
   translate: 10px -10px;
   rotate: .125turn;
@@ -122,8 +138,14 @@ button {
   transition: 1s;
   stroke-dasharray: 60 31 60 300;
 }
-
+/* todo анимация CSS
 .button-three:hover .line {
+  stroke-dasharray: 60 105 60 300;
+  stroke-dashoffset: -90;
+} */
+
+/* todo Управление анимацией JS */
+.button-three[aria-expanded="true"] .line {
   stroke-dasharray: 60 105 60 300;
   stroke-dashoffset: -90;
 }
